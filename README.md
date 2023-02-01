@@ -1,6 +1,6 @@
 # Introduction
 
-Open control plane is a project promoted by Chivo to create a single interface to manage infrastructure using a single tool `kubectl`, this project has 3 components:
+Open control plane is a project promoted by Civo to create a single interface to manage infrastructure using a single tool `kubectl`, this project has 3 components:
 
 - opencp-shim
 - opencp-spec
