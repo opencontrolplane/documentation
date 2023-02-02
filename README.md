@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/8190114/216349330-64237df4-7113-42f8-92d9-5797accc3206.png)
+
 # Introduction
 
 Open control plane is a project promoted by Civo to create a single interface to manage infrastructure using a single tool `kubectl`, this project has 3 components:
