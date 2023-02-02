@@ -20,7 +20,7 @@ OpenCP(Open Control Plane) is a project originally developed by Civo (www.civo.c
 
 ## Provider Implemetation
 
-The provider's implementation imports `opencv-spec` to create the gRCP server and at the same time talk to the provider's API to fetch the mobjects and convert them to `protobuf` objects.
+The provider's implementation imports `opencp-spec` to create the gRCP server and at the same time talk to the provider's API to fetch the objects and convert them to `protobuf` objects.
 
 ## Open Control Plane Flow
 
