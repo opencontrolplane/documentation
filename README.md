@@ -173,6 +173,7 @@ spec:
   version: 1.22.11-k3s1
   firewall: my-firewall
   cni_plugin: flannel
+  cluster_type: k3s | talos # optional field
 ```
 
 ### Object Storage Credential
