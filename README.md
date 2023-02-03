@@ -236,7 +236,27 @@ spec:
 
 # Contributing
 
-- Follow the Git instructions to clone the `opencp-shim` and you can use the `civo-opencontrolplane` project as base
+We welcome and appreciate any contributions to Open Control Plane. Here are a few guidelines to help you get started.
+
+### Issues
+
+If you find a bug or have an idea for a new feature, please create an issue in the issue tracker depending of the project. Before creating a new issue, please check if a similar issue already exists.
+
+### Pull Requests
+
+We accept contributions in the form of pull requests. If you're fixing a bug, please provide a clear and concise description of the problem and the solution you're proposing. If you're adding a new feature, please describe the feature and why you think it's valuable.
+
+Here's how to create a pull request:
+
+1. Fork the repository.
+2. Clone your fork to your local machine.
+3. Create a new branch for your changes.
+4. Make your changes and push the branch to your fork.
+5. Open a pull request on the original repository.
+
+We'll review your changes and may request revisions. Once the changes are approved, we'll merge them into the main branch.
+
+Thanks for considering a contribution to Open Control Plane!
 
 # Maintainers
 
