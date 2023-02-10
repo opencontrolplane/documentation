@@ -8,7 +8,7 @@ OpenCP (Open Control Plane) is a project originally developed by Civo (www.civo.
 
 The benefits for using OpenCP over other tools are:
 
-- Uses existing Kubectl binary, nothing more to install
+- Uses existing kubectl binary, nothing more to install
 - Single tool to manage all infrastructure components across cloud/service providers
 - No need to install multiple CLIs any more from different cloud/service providers
 - Removes the need to use infrastructure as code tools
