@@ -4,7 +4,7 @@
 
 # Introduction
 
-OpenCP (Open Control Plane) is a project originally developed by Civo (www.civo.com) to create a single interface to manage infrastructure using a single tool kubectl.
+OpenCP (Open Control Plane) is an open source project originally developed by Civo (www.civo.com) to create a single interface to manage infrastructure using a single tool kubectl.
 
 The benefits for using OpenCP over other tools are:
 
