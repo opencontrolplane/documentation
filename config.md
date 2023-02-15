@@ -1,6 +1,6 @@
 # Kubeconfig
 
-This is and example of the `kubeconfig` to use with `opencp` or open control plane, you only ed replace `<TOKER>` by your provider token
+This is an example of the `kubeconfig` to use with `opencp` or open control plane. You would need to replace `<TOKEN>` with your provider token / API key.
 
 ```yaml
 apiVersion: v1
