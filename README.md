@@ -46,7 +46,7 @@ Once edited, set the KUBECONFIG environment variable to the path to the configur
 
 ### Specifying a Kubernetes cluster configuration
 
-Referring to the [supported objects](./supported-objects.md), you can create a cluster definition file, `civo-cluster.yaml`. For example:
+Referring to the [supported objects](./supported-objects.md), you can create a cluster definition file, `demo-cluster.yaml`. For example:
 
 ```bash
 apiVersion: opencp.io/v1alpha1
@@ -68,7 +68,7 @@ spec:
 You can create a cluster using the definition file you edited by applying it to OpenCP the same way as you would apply any Kubernetes object configuration:
 
 ```bash
-$ kubectl apply -f cluster.yaml
+$ kubectl apply -f demo-cluster.yaml
 kubernetescluster.opencp.io/demo-cluster created
 ```
 
