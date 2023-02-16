@@ -1,38 +1,61 @@
-![GitHub-Mark-Light](https://user-images.githubusercontent.com/8190114/216351384-35b70b2a-6111-4c46-9ee9-ba5429852240.png#gh-light-mode-only)
-![GitHub-Mark-Dark](https://user-images.githubusercontent.com/8190114/216352093-ff120b05-4943-48f4-98d9-f6ab29cf9d0c.png#gh-dark-mode-only)
+![OpenCP logo Light mode](https://user-images.githubusercontent.com/8190114/216351384-35b70b2a-6111-4c46-9ee9-ba5429852240.png#gh-light-mode-only)
+![OpenCP logo Dark mode](https://user-images.githubusercontent.com/8190114/216352093-ff120b05-4943-48f4-98d9-f6ab29cf9d0c.png#gh-dark-mode-only)
 
 
-# Introduction
+## Introduction
 
-OpenCP (Open Control Plane) is an open source project originally developed by Civo (www.civo.com) to create a single interface to manage infrastructure using a single tool kubectl.
+OpenCP (Open Control Plane) is an open source project originally developed by [Civo](www.civo.com) to create a single interface to manage infrastructure using a single tool, kubectl.
 
-The benefits for using OpenCP over other tools are:
+### Why OpenCP?
 
-- Uses existing kubectl binary, nothing more to install
+Increasingly, developers face having to learn and update multiple command-line tools on their machines to manage cloud infrastructure, each with their own learning curve and feature set.
+
+Vendors maintaining separate tools need to manage multiple objects (CLI, API versioning, operating system dependencies, etc) for any updates they roll out to their services. Bugfixes across the various cloud service tools can often be difficult to manage across operating systems and platforms, especially with multiple versions of those tools being used by developers concurrently.
+
+OpenCP does away with software update requirements, as resources are entirely API-driven. It is also operating system-agnostic, making use of the existing kubectl binary with nothing else to install or maintain for a user. A cloud provider can maintain OpenCP endpoints alongside their API that map to any resources provided by them. New features can be introduced by new endpoints, or updated specs of existing endpoints in a manner similar to Kubernetes API versioning.
+
+[Kubectl](https://kubernetes.io/docs/reference/kubectl/) is the standard tool for managing Kubernetes resources. It is available for all common operating systems and robustly documented. OpenCP's kubectl compatibility means developers' daily drivers such as [K9s](https://github.com/derailed/k9s) and [Lens](https://github.com/lensapp/lens) are able to be used to manage resources on OpenCP too. As OpenCP objects are managed the same way as any Kubernetes objects, it fits in well with a cloud engineer's workflow.
+
+OpenCP complements existing Infrastructure as Code tools, without needing a separate Kubernetes cluster or other infrastructure to act as the management plane.
+
+OpenCP is useful for platform teams and developers who manage infrastructure with the intention of providing a unified interface through a Kubernetes API Server-like set of endpoints.
+
+In summary, some of the benefits for using OpenCP over other tools are:
+
+- Uses existing kubectl binary, nothing more to install or set up
 - Single tool to manage all infrastructure components across cloud/service providers
-- No need to install multiple CLIs any more from different cloud/service providers
-- Removes the need to use infrastructure as code tools
+- No longer necessary to install multiple CLIs from different cloud/service providers
 - No software updates required - all API driven
+- No separate management plane or cluster required
+
+## Video: OpenCP Introduction
+
+Watch Civo CTO Dinesh Majrekar speaking about OpenCP on the CNCF TAG App Delivery call:
+
+[![Civo CTO Dinesh Majrekar speaking on the CNCF TAG App Delivery call on 14 February 2023](http://i3.ytimg.com/vi/iuP7b22STqg/hqdefault.jpg)](https://youtu.be/iuP7b22STqg?t=2264)
+
+## Try OpenCP today
+
+You can test OpenCP out today on Civo by using the [Civo OpenCP Implementation](https://www.github.com/opencontrolplane/civo-opencontrolplane) with your [Civo account](https://www.civo.com/).
+## Project Structure
 
 This project has 3 components:
 
-- opencp-shim
-- opencp-spec
-- Provider implementation
+### [opencp-spec](https://github.com/opencontrolplane/opencp-spec)
 
-## opencp-spec
+`opencp-spec` is in charge of keeping the API in go and the client and server generated using `protobuf` files, which will then be used by `opencp-shim` and the provider implementation.
 
-`opencp-spec` is in charge of keeping the api in go and the client and server generated using `protobuf` files, which will then be used by `opencp-shim` and the provider implementation
+### [opencp-shim](https://github.com/opencontrolplane/opencp-shim)
 
-## opencp-shim
+`opencp-shim` is in charge of interfacing `kubectl` with the provider implementation. This project uses `opencp-spec` to import the `kubectl` compatible go API and create the `gRCP` client, which in turn connects to the server created by the cloud provider.
 
-`opencp-shim` is in charge of interfacing `kubectl` with the provider implementation, this project uses `opencp-spec` to import the `kubectl` compatible go api and create the `gRCP` client which then It will connect to the server created by the cloud provider.
+### Provider Implementation
 
-## Provider Implemetation
-
-The provider's implementation imports `opencp-spec` to create the gRCP server and at the same time talk to the provider's API to fetch the objects and convert them to `protobuf` objects.
+The provider's implementation imports `opencp-spec` to create the gRCP server, and at the same time communicates with the provider's API to fetch the objects and convert them to `protobuf` objects.
 
 ## Open Control Plane Flow
+
+An example OpenCP request flow from a user to a cloud provider to request a list of running clusters.
 
 ```mermaid
 sequenceDiagram
@@ -42,232 +65,37 @@ sequenceDiagram
     participant CloudApi
     Kubectl->>Opencp Shim: kubectl get kubernetescluster -A (REST call)
     Opencp Shim->>Cloud Implementation: gRCP call
-    Cloud Implementation->>CloudApi: Get all Kuberentes cluster (REST call)
+    Cloud Implementation->>CloudApi: Get all Kubernetes clusters (REST call)
     CloudApi->>Cloud Implementation: Return the result
-    Cloud Implementation->>Opencp Shim: gRCP respond
+    Cloud Implementation->>Opencp Shim: gRCP response
     Opencp Shim->>Kubectl: Respond in the right format
     
 ```
 
-# Supported Objects
+## Supported Objects
 
-```bash
-# kubectl api-resources                                                   
-NAME                       SHORTNAMES                             APIVERSION           NAMESPACED   KIND
-namespaces                 ns                                     v1                   false        Namespace
-databases                  db,dbass                               opencp.io/v1alpha1   true         Database
-domains                    dns,domains                            opencp.io/v1alpha1   false        Domain
-firewalls                  fw,firewalls                           opencp.io/v1alpha1   true         Firewall
-ips                        ip                                     opencp.io/v1alpha1   false        IP
-kubernetesclusters         kcluster,kclusters                     opencp.io/v1alpha1   true         KubernetesCluster
-objectstoragecredentials   s3credential,objectstoragecredential   opencp.io/v1alpha1   false        ObjectStorageCredential
-objectstorages             s3,objectstorage                       opencp.io/v1alpha1   false        ObjectStorage
-sshkeys                    sshkey,ssh                             opencp.io/v1alpha1   false        SSHKey
-virtualmachines            vm,vms                                 opencp.io/v1alpha1   true         VirtualMachine
-```
+OpenCP supports a number of infrastructure objects. These are detailed in [supported-objects.md](supported-objects.md)
 
-### Namespace
+## Contributing
 
-```yaml
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: opencp
-```
+We welcome and appreciate any contributions to OpenCP.
 
-### Databases
+We especially welcome:
 
-```yaml
-apiVersion: opencp.io/v1alpha1
-kind: Database
-metadata:
-  name: my-db
-  namespace: opencp
-spec:
-  nodes: 1
-  size: "g3.db.xsmall"
-  firewall: "mydb" # Optional field
-  engine: "MySQL"
-  engineVersion: "8.0"
-```
+- Feedback on the project as a whole from the perspective of a user,
+- Contact and encouragement of vendors and cloud providers to implement OpenCP,
+- Provider implementations,
+- Input and comment on specs,
+- Suggestions in the form of KEPs 
 
-### Domains
+For more information on contributing, please see [contributing.md](contributing.md)
+ 
+Thanks for considering a contribution to OpenCP!
 
-```yaml
-apiVersion: opencp.io/v1alpha1
-kind: Domain
-metadata:
-  name: domain.com
-spec:
-  records:
-    - name: mail
-      value: 10.0.0.1
-      type: MX
-      priority: 10
-      ttl: 600
-    - name: www
-      value: mail.domain.com
-      type: CNAME
-      ttl: 600
-```
+## Style Guide
 
-### Firewalls
+For more information on correct styling of referring to OpenCP, please see [style-guide.md](style-guide.md).
 
-```yaml
-apiVersion: opencp.io/v1alpha1
-kind: Firewall
-metadata:
-  name: www
-  namespace: kubectl
-spec:
-  ingress:
-  - action: allow
-    label: https server
-    ports: "443"
-    protocol: tcp
-    source:
-    - 0.0.0.0/0
-  - action: allow
-    label: http
-    ports: "80"
-    protocol: tcp
-    source:
-    - 0.0.0.0/0
-  egress:
-  - action: allow
-    label: All TCP ports open
-    ports: 1-65535
-    protocol: tcp
-    source:
-    - 0.0.0.0/0
-  - action: allow
-    label: All UDP ports open
-    ports: 1-65535
-    protocol: udp
-    source:
-    - 0.0.0.0/0
-  - action: allow
-    label: Ping/traceroute
-    ports: ""
-    protocol: icmp
-    source:
-    - 0.0.0.0/0
-```
-
-### IP
-
-```yaml
-apiVersion: opencp.io/v1alpha1
-kind: IP
-metadata:
-  name: test-ip
-spec:
-  name: test-ip
-```
-
-### Kubernetes Cluster
-
-```yaml
-apiVersion: opencp.io/v1alpha1
-kind: KubernetesCluster
-metadata:
-  name: cluster-grpc
-  namespace: kubectl
-spec:
-  pools:
-    - size: g4s.kube.small
-      id: 8172c593-0b0b-47ae-8821-000b82988950
-      count: 1
-      autoscaler: false # optional field
-      min_size: 1 # optional field
-      max_size: 10 # optional field
-    - size: g4s.kube.small
-      id: bbc81b31-73c5-44b0-a849-809c8de3c52d
-      count: 1
-  version: 1.22.11-k3s1
-  firewall: my-firewall
-  cni_plugin: flannel
-  cluster_type: k3s | talos # optional field
-```
-
-### Object Storage Credential
-
-```yaml
-apiVersion: opencp.io/v1alpha1
-kind: ObjectStorageCredential
-metadata:
-  name: mykey
-spec:
-  accesskey: key
-  secretkey: supersecretkey1234567890
-```
-
-### Object Storage
-
-```yaml
-apiVersion: opencp.io/v1alpha1
-kind: ObjectStorage
-metadata:
-  name: my-s3
-spec:
-  size: 500
-  storageCredential: mykey # optional field
-```
-
-### SSH Key
-
-```yaml
-apiVersion: opencp.io/v1alpha1
-kind: SSHKey
-metadata:
-  name: my-sshkey
-spec:
-  publickey: |
-    ssh-rsa HtBOHuMwMQujzcl4zsFXCJctKsHzKkHTpmuONLaHudfWEjlJFNmCw3SlK3DJPIj5vHjLQulTfyBHA/sTtw1iY7Dzo/qKFxpS0yKeVDUYChZ8hZ93f1avWeK6CQPy2pclSdcgR3wUBwix0tl test@mackbook.lan
-```
-
-### Virtual Machine
-
-```yaml
-kind: VirtualMachine
-apiVersion: opencp.io/v1alpha1
-metadata:
-  name: my-vm
-  namespace: opencp
-spec:
-  size: g3.medium
-  firewall: my-firewall
-  ipv4: true
-  image: ubuntu-jammy
-  auth:
-    user: root
-    ssh_key: my-sshkey
-```
-
-# Contributing
-
-We welcome and appreciate any contributions to Open Control Plane. Here are a few guidelines to help you get started.
-
-### Issues
-
-If you find a bug or have an idea for a new feature, please create an issue in the issue tracker depending of the project. Before creating a new issue, please check if a similar issue already exists.
-
-### Pull Requests
-
-We accept contributions in the form of pull requests. If you're fixing a bug, please provide a clear and concise description of the problem and the solution you're proposing. If you're adding a new feature, please describe the feature and why you think it's valuable.
-
-Here's how to create a pull request:
-
-1. Fork the repository.
-2. Clone your fork to your local machine.
-3. Create a new branch for your changes.
-4. Make your changes and push the branch to your fork.
-5. Open a pull request on the original repository.
-
-We'll review your changes and may request revisions. Once the changes are approved, we'll merge them into the main branch.
-
-Thanks for considering a contribution to Open Control Plane!
-
-# Maintainers
+## Maintainers
 
 - Alejandro J. Nunez Madrazo (Civo) - https://www.civo.com
