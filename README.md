@@ -103,6 +103,16 @@ Spec:
 [...]
 ```
 
+### Delete resources
+
+Deleting a resource you have created using an OpenCP manifest is syntactically the same as deleting an object in Kubernetes:
+
+```bash
+$ kubectl delete -f demo-cluster.yaml
+
+kubernetescluster.opencp.io "demo-cluster" deleted
+```
+
 ## Project Structure
 
 This project has 3 components:
