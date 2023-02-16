@@ -36,7 +36,73 @@ Watch Civo CTO Dinesh Majrekar speaking about OpenCP on the CNCF TAG App Deliver
 
 ## Try OpenCP today
 
-You can test OpenCP out today on Civo by using the [Civo OpenCP Implementation](https://www.github.com/opencontrolplane/civo-opencontrolplane) with your [Civo account](https://www.civo.com/).
+You can test OpenCP out today on Civo by using the [Civo OpenCP Implementation](https://www.github.com/opencontrolplane/civo-opencontrolplane) with your [Civo account](https://www.civo.com/):
+
+### Configuration file
+
+You will find a sample configuration file at [config.md](./config.md). The file contains a KUBECONFIG context that you can edit to include your Civo [API key](https://www.civo.com/docs/account/api-keys).
+
+Once edited, set the KUBECONFIG environment variable to the path to the configuration file. You will then be able to access the Civo API using kubectl commands.
+
+### Specifying a Kubernetes cluster configuration
+
+Referring to the [supported objects](./supported-objects.md), you can create a cluster definition file, `civo-cluster.yaml`. For example:
+
+```bash
+apiVersion: opencp.io/v1alpha1
+kind: KubernetesCluster
+metadata:
+  name: demo-cluster
+  namespace: Default
+spec:
+  pools:
+    - size: g4s.kube.medium
+      count: 3
+  version: 1.24.4-k3s1
+  cni_plugin: flannel
+  cluster_type: k3s
+```
+
+### Create cloud provider objects using OpenCP
+
+You can create a cluster using the definition file you edited by applying it to OpenCP the same way as you would apply any Kubernetes object configuration:
+
+```bash
+$ kubectl apply -f cluster.yaml
+kubernetescluster.opencp.io/demo-cluster created
+```
+
+### View resources in a cloud provider region using OpenCP
+
+Resources are available to inspect by type and namespace, where specified as namespaced in the [supported objects](./supported-objects.md). You can list Kubernetes clusters in the current region and all namespaces using the following syntax:
+
+```bash
+$ kubectl get kubernetesclusters -n A
+
+NAME              UID                                    POOLS   PUBLIC IP       STATE    AGE
+demo-cluster      adafb156-1015-4477-ac6e-8ab67682ad1e   1       74.220.23.185   ACTIVE   2023-02-16T04:39:56Z
+```
+
+The specification of resources can be described using `kubectl describe`:
+
+```bash
+$ kubectl describe kubernetescluster demo-cluster -n Default
+
+Name:         demo-cluster
+Namespace:    Default
+Labels:       <none>
+Annotations:  <none>
+API Version:  opencp.io/v1alpha1
+Kind:         KubernetesCluster
+Metadata:
+  Creation Timestamp:  2023-02-16T04:39:56Z
+  UID:                 adafb156-1015-4477-ac6e-8ab67682ad1e
+Spec:
+  cluster_type:  k3s
+  cni_plugin:    flannel
+[...]
+```
+
 ## Project Structure
 
 This project has 3 components:
