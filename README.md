@@ -175,3 +175,6 @@ For more information on correct styling of referring to OpenCP, please see [styl
 ## Maintainers
 
 - [Alejandro J. Nunez Madrazo](https://github.com/alejandrojnm) ([Civo](https://www.civo.com))
+- [Saiyam Pathak](https://github.com/saiyam1814) ([Civo](https://www.civo.com))
+- [Mark Boost](https://github.com/markboost) ([Civo](https://www.civo.com))
+- [Dinesh Majrekar](https://github.com/DMajrekar) ([Civo](https://www.civo.com))
