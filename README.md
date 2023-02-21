@@ -170,7 +170,7 @@ Thanks for considering a contribution to OpenCP!
 
 ## Style Guide
 
-For more information on correct styling of referring to OpenCP, please see [style-guide.md](style-guide.md).
+For more information on logos, brand marks, and correct styling of referring to OpenCP, please see [style-guide.md](style-guide.md).
 
 ## Maintainers
 
