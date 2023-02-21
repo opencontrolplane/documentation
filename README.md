@@ -174,4 +174,4 @@ For more information on correct styling of referring to OpenCP, please see [styl
 
 ## Maintainers
 
-- Alejandro J. Nunez Madrazo (Civo) - https://www.civo.com
+- [Alejandro J. Nunez Madrazo](https://github.com/alejandrojnm) ([Civo](https://www.civo.com))
