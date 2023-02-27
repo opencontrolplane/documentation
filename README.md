@@ -123,7 +123,7 @@ This project has 3 components:
 
 ### [opencp-shim](https://github.com/opencontrolplane/opencp-shim)
 
-`opencp-shim` is in charge of interfacing `kubectl` with the provider implementation. This project uses `opencp-spec` to import the `kubectl` compatible go API and create the `gRCP` client, which in turn connects to the server created by the cloud provider.
+`opencp-shim` is in charge of interfacing `kubectl` with the provider implementation. This project uses `opencp-spec` to import the `kubectl` compatible go API and create the `gRCP` client, which in turn connects to the server created by the cloud provider. The shim has taken inspiration from the Kubernetes CSI and CCM implementations, which allow for pluggable and extensible code.
 
 ### Provider Implementation
 
