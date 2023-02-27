@@ -162,7 +162,7 @@ We especially welcome:
 - Contact and encouragement of vendors and cloud providers to implement OpenCP,
 - Provider implementations,
 - Input and comment on specs,
-- Suggestions in the form of KEPs 
+- Suggestions in the form of [Enhancement Proposals](./enhancement-proposals/README.md)
 
 For more information on contributing, please see [contributing.md](contributing.md)
  
