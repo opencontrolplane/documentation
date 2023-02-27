@@ -164,7 +164,7 @@ We especially welcome:
 - Input and comment on specs,
 - Suggestions in the form of [Enhancement Proposals](./enhancement-proposals/README.md)
 
-For more information on contributing, please see [contributing.md](contributing.md)
+For more information on contributing, please see [contributing.md](CONTRIBUTING.md)
  
 Thanks for considering a contribution to OpenCP!
 
