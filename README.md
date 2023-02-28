@@ -1,6 +1,10 @@
 ![OpenCP logo Light mode](https://user-images.githubusercontent.com/8190114/216351384-35b70b2a-6111-4c46-9ee9-ba5429852240.png#gh-light-mode-only)
 ![OpenCP logo Dark mode](https://user-images.githubusercontent.com/8190114/216352093-ff120b05-4943-48f4-98d9-f6ab29cf9d0c.png#gh-dark-mode-only)
 
+## Introduction
+
+OpenCP (Open Control Plane) is an open source project originally developed by [Civo](www.civo.com) to create a single interface to manage infrastructure using a single tool, kubectl.
+
 ## Goals
 
 - Unified interface between cloud providers
@@ -11,10 +15,6 @@
 ## Out of Scope:
 
 - Replacement for GitOps tools such as Crossplane / ArgoCD / Flux. Continuous watching and reconciliation of resources it not part of this project. However, these tools would interact with Cloud Providers using an OpenCP compatible interface
-
-## Introduction
-
-OpenCP (Open Control Plane) is an open source project originally developed by [Civo](www.civo.com) to create a single interface to manage infrastructure using a single tool, kubectl.
 
 ### Why OpenCP?
 
