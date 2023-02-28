@@ -1,10 +1,20 @@
 ![OpenCP logo Light mode](https://user-images.githubusercontent.com/8190114/216351384-35b70b2a-6111-4c46-9ee9-ba5429852240.png#gh-light-mode-only)
 ![OpenCP logo Dark mode](https://user-images.githubusercontent.com/8190114/216352093-ff120b05-4943-48f4-98d9-f6ab29cf9d0c.png#gh-dark-mode-only)
 
-
 ## Introduction
 
 OpenCP (Open Control Plane) is an open source project originally developed by [Civo](www.civo.com) to create a single interface to manage infrastructure using a single tool, kubectl.
+
+## Goals
+
+- Unified interface between cloud providers
+- API End points to be hosted by providers, not users (Interim solution could allow users to self host, but this is not what we really want)
+- Ability to manage resources outside of traditional cloud infra, e.g. Domain Name registrations
+- Create a unified dev / DevOps experience through `kubectl` only
+
+## Out of Scope:
+
+- Replacement for GitOps tools such as Crossplane / ArgoCD / Flux. Continuous watching and reconciliation of resources it not part of this project. However, these tools would interact with Cloud Providers using an OpenCP compatible interface
 
 ### Why OpenCP?
 
@@ -80,7 +90,7 @@ Resources are available to inspect by type and namespace, where specified as nam
 $ kubectl get kubernetesclusters -n A
 
 NAME              UID                                    POOLS   PUBLIC IP       STATE    AGE
-demo-cluster      adafb156-1015-4477-ac6e-8ab67682ad1e   1       74.220.23.185   ACTIVE   2023-02-16T04:39:56Z
+demo-cluster      adafb156-1015-4477-ac6e-8ab67682ad1e   1       74.220.23.185   ACTIVE   1m
 ```
 
 The specification of resources can be described using `kubectl describe`:
@@ -164,9 +174,7 @@ We especially welcome:
 - Input and comment on specs,
 - Suggestions in the form of [Enhancement Proposals](./enhancement-proposals/README.md)
 
-For more information on contributing, please see [contributing.md](CONTRIBUTING.md)
- 
-Thanks for considering a contribution to OpenCP!
+For more information on contributing, please see [contributing.md](contributing.md)
 
 ## Style Guide
 
