@@ -133,7 +133,7 @@ This project has 3 components:
 
 ### [opencp-shim](https://github.com/opencontrolplane/opencp-shim)
 
-`opencp-shim` is in charge of interfacing `kubectl` with the provider implementation. This project uses `opencp-spec` to import the `kubectl` compatible go API and create the `gRCP` client, which in turn connects to the server created by the cloud provider.
+`opencp-shim` is in charge of interfacing `kubectl` with the provider implementation. This project uses `opencp-spec` to import the `kubectl` compatible go API and create the `gRCP` client, which in turn connects to the server created by the cloud provider. The shim has taken inspiration from the Kubernetes CSI and CCM implementations, which allow for pluggable and extensible code.
 
 ### Provider Implementation
 
@@ -172,16 +172,17 @@ We especially welcome:
 - Contact and encouragement of vendors and cloud providers to implement OpenCP,
 - Provider implementations,
 - Input and comment on specs,
-- Suggestions in the form of KEPs 
+- Suggestions in the form of [Enhancement Proposals](./enhancement-proposals/README.md)
 
 For more information on contributing, please see [contributing.md](contributing.md)
 
-Thanks for considering a contribution to OpenCP!
-
 ## Style Guide
 
-For more information on correct styling of referring to OpenCP, please see [style-guide.md](style-guide.md).
+For more information on logos, brand marks, and correct styling of referring to OpenCP, please see [style-guide.md](style-guide.md).
 
 ## Maintainers
 
-- Alejandro J. Nunez Madrazo (Civo) - https://www.civo.com
+- [Alejandro J. Nunez Madrazo](https://github.com/alejandrojnm) ([Civo](https://www.civo.com))
+- [Saiyam Pathak](https://github.com/saiyam1814) ([Civo](https://www.civo.com))
+- [Mark Boost](https://github.com/markboost) ([Civo](https://www.civo.com))
+- [Dinesh Majrekar](https://github.com/DMajrekar) ([Civo](https://www.civo.com))
