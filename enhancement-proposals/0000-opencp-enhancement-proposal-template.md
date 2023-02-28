@@ -8,11 +8,11 @@ To propose a new enhancement:
 
 1. Edit a copy of this file to remove this front matter (until *Enhancement Proposal Title*) and fill in the appropriate fields, titles and design information.
 
-2. Start an issue in the Open Control Plane (Documentation) repository with a title in the form of "Enhancement Proposal _Your Title_".
+2. Start an issue in the [Open Control Plane (Documentation) repository](https://github.com/opencontrolplane/documentation/issues) with a title in the form of "Enhancement Proposal _Your Title_".
 
 3. Save the proposal template copy with the generated issue number and feature title, e.g. "1234-new-provider-API-fields.md".
 
-4. Raise a Pull Request to the Open Control Plane (Documentation) repository with your proposal file.
+4. Raise a Pull Request to the [Open Control Plane (Documentation) repository](https://github.com/opencontrolplane/documentation) with your proposal file.
 
 5. Edit the issue you created in step 2 to include a link to the pull request to allow reviewers to have a look.
 
