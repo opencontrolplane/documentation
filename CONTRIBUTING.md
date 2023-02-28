@@ -10,7 +10,7 @@ If you find a bug, please create an issue in the issue tracker of OpenCP project
 
 ### Feature requests
 
-OpenCP follows the [Kubernetes Enhancement Proposal (KEP) model](https://github.com/kubernetes/enhancements/tree/master/keps) for new feature/enhancement discussion and development. If you have an idea for a new feature for OpenCP, please submit a new KEP based on the [OpenCP KEP template](./enhancement-proposals/).
+OpenCP follows the [Kubernetes Enhancement Proposal (KEP) model](https://github.com/kubernetes/enhancements/tree/master/keps) for new feature/enhancement discussion and development. If you have an idea for a new feature for OpenCP, please submit a new enhancement proposal based on the [OpenCP KEP template](./enhancement-proposals/).
 
 ### Pull Requests
 
