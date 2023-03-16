@@ -130,15 +130,15 @@ spec:
       id: 8172c593-0b0b-47ae-8821-000b82988950
       count: 1
       autoscaler: false # optional field
-      min_size: 1 # optional field
-      max_size: 10 # optional field
+      minSize: 1 # optional field
+      maxSize: 10 # optional field
     - size: g4s.kube.small
       id: bbc81b31-73c5-44b0-a849-809c8de3c52d
       count: 1
   version: 1.22.11-k3s1
   firewall: my-firewall
-  cni_plugin: flannel
-  cluster_type: k3s | talos # optional field
+  cniPlugin: flannel
+  clusterType: k3s | talos # optional field
 ```
 
 ### Object Storage Credential
@@ -149,8 +149,8 @@ kind: ObjectStorageCredential
 metadata:
   name: mykey
 spec:
-  accesskey: key
-  secretkey: supersecretkey1234567890
+  accessKey: key
+  secretKey: supersecretkey1234567890
 ```
 
 ### Object Storage
@@ -173,7 +173,7 @@ kind: SSHKey
 metadata:
   name: my-sshkey
 spec:
-  publickey: |
+  publicKey: |
     ssh-rsa HtBOHuMwMQujzcl4zsFXCJctKsHzKkHTpmuONLaHudfWEjlJFNmCw3SlK3DJPIj5vHjLQulTfyBHA/sTtw1iY7Dzo/qKFxpS0yKeVDUYChZ8hZ93f1avWeK6CQPy2pclSdcgR3wUBwix0tl test@mackbook.lan
 ```
 
@@ -192,5 +192,5 @@ spec:
   image: ubuntu-jammy
   auth:
     user: root
-    ssh_key: my-sshkey
+    sshKey: my-sshkey
 ```
